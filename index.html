@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BongoWide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="toolbar">
+            <div class="toolbar-left">
+                <h1 class="app-name">BongoWide</h1>
+            </div>
+            <div class="toolbar-right">
+                <button class="toolbar-btn" id="notificationBtn">
+                    <i class="fas fa-bell"></i>
+                </button>
+                <button class="toolbar-btn" id="searchBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="toolbar-btn" id="themeBtn">
+                    <i class="fas fa-palette"></i>
+                </button>
+                <button class="toolbar-btn" id="profileBtn">
+                    <i class="fas fa-user-circle"></i>
+                </button>
+            </div>
+        </header>
+
+        <div class="theme-selector" id="themeSelector">
+            <h3>Choose Theme Color</h3>
+            <div class="color-options">
+                <button class="color-btn" data-color="#2196F3" style="background: #2196F3;"></button>
+                <button class="color-btn" data-color="#4CAF50" style="background: #4CAF50;"></button>
+                <button class="color-btn" data-color="#FF5722" style="background: #FF5722;"></button>
+                <button class="color-btn" data-color="#9C27B0" style="background: #9C27B0;"></button>
+                <button class="color-btn" data-color="#FF9800" style="background: #FF9800;"></button>
+                <button class="color-btn" data-color="#E91E63" style="background: #E91E63;"></button>
+            </div>
+        </div>
+
+        <div class="profile-drawer" id="profileDrawer">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <h2 id="profileName">Guest User</h2>
+                <p id="profileStatus">Available</p>
+            </div>
+            <div class="profile-content">
+                <div class="profile-item">
+                    <i class="fas fa-user"></i>
+                    <span>Edit Profile</span>
+                </div>
+                <div class="profile-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </div>
+                <div class="profile-item">
+                    <i class="fas fa-moon"></i>
+                    <span>Dark Mode</span>
+                </div>
+                <div class="profile-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search messages, contacts...">
+                <button id="closeSearch"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="search-results" id="searchResults"></div>
+        </div>
+
+        <main class="content">
+            <div class="screen active" id="chatScreen">
+                <div class="chat-list" id="chatList">
+                    <div class="chat-header">
+                        <h2>Chats</h2>
+                        <button class="new-chat-btn"><i class="fas fa-edit"></i></button>
+                    </div>
+                    <div class="chats-container" id="chatsContainer"></div>
+                </div>
+                <div class="chat-window" id="chatWindow">
+                    <div class="chat-window-placeholder">
+                        <i class="fas fa-comments"></i>
+                        <p>Select a chat to start messaging</p>
+                    </div>
+                    <div class="chat-messages" id="chatMessages" style="display: none;">
+                        <div class="chat-window-header">
+                            <button class="back-btn" id="backBtn"><i class="fas fa-arrow-left"></i></button>
+                            <div class="chat-info">
+                                <h3 id="chatName"></h3>
+                                <p id="chatStatus">online</p>
+                            </div>
+                            <button class="chat-menu-btn"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                        <div class="messages-container" id="messagesContainer"></div>
+                        <div class="message-input-container">
+                            <button class="attach-btn"><i class="fas fa-paperclip"></i></button>
+                            <input type="text" id="messageInput" placeholder="Type a message">
+                            <button class="send-btn" id="sendBtn"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="screen" id="updatesScreen">
+                <div class="updates-header">
+                    <h2>Updates</h2>
+                    <button class="add-update-btn"><i class="fas fa-plus"></i></button>
+                </div>
+                <div class="updates-content">
+                    <div class="update-section">
+                        <h3>Status</h3>
+                        <div class="status-list">
+                            <div class="status-item">
+                                <div class="status-avatar">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                                <div class="status-info">
+                                    <h4>My Status</h4>
+                                    <p>Tap to add status update</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="update-section">
+                        <h3>Recent Updates</h3>
+                        <div id="recentUpdates">
+                            <p class="no-updates">No recent updates</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="screen" id="groupsScreen">
+                <div class="groups-header">
+                    <h2>Groups</h2>
+                    <button class="new-group-btn"><i class="fas fa-users"></i></button>
+                </div>
+                <div class="groups-content" id="groupsContent">
+                    <div class="group-item">
+                        <div class="group-avatar">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="group-info">
+                            <h4>Create New Group</h4>
+                            <p>Start a group conversation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="screen" id="worldScreen">
+                <div class="world-header">
+                    <h2>World</h2>
+                </div>
+                <div class="world-content">
+                    <div class="world-section">
+                        <h3>Discover</h3>
+                        <div class="world-grid">
+                            <div class="world-card">
+                                <div class="world-card-image">
+                                    <i class="fas fa-globe"></i>
+                                </div>
+                                <h4>Global News</h4>
+                                <p>Stay updated with world news</p>
+                            </div>
+                            <div class="world-card">
+                                <div class="world-card-image">
+                                    <i class="fas fa-newspaper"></i>
+                                </div>
+                                <h4>Tech Updates</h4>
+                                <p>Latest in technology</p>
+                            </div>
+                            <div class="world-card">
+                                <div class="world-card-image">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                                <h4>Sports</h4>
+                                <p>Live scores and updates</p>
+                            </div>
+                            <div class="world-card">
+                                <div class="world-card-image">
+                                    <i class="fas fa-music"></i>
+                                </div>
+                                <h4>Entertainment</h4>
+                                <p>Movies, music, and more</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="screen" id="callsScreen">
+                <div class="calls-header">
+                    <h2>Calls</h2>
+                    <button class="new-call-btn"><i class="fas fa-phone"></i></button>
+                </div>
+                <div class="calls-content">
+                    <div class="call-actions">
+                        <button class="call-action-btn">
+                            <i class="fas fa-phone"></i>
+                            <span>Voice Call</span>
+                        </button>
+                        <button class="call-action-btn">
+                            <i class="fas fa-video"></i>
+                            <span>Video Call</span>
+                        </button>
+                    </div>
+                    <div class="calls-list">
+                        <h3>Recent</h3>
+                        <div id="recentCalls">
+                            <p class="no-calls">No recent calls</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <button class="nav-btn active" data-screen="chatScreen">
+                <i class="fas fa-comments"></i>
+                <span>Chat</span>
+            </button>
+            <button class="nav-btn" data-screen="updatesScreen">
+                <i class="fas fa-sync"></i>
+                <span>Updates</span>
+            </button>
+            <button class="nav-btn" data-screen="groupsScreen">
+                <i class="fas fa-users"></i>
+                <span>Groups</span>
+            </button>
+            <button class="nav-btn" data-screen="worldScreen">
+                <i class="fas fa-globe"></i>
+                <span>World</span>
+            </button>
+            <button class="nav-btn" data-screen="callsScreen">
+                <i class="fas fa-phone"></i>
+                <span>Calls</span>
+            </button>
+        </nav>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
